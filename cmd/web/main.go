@@ -9,7 +9,7 @@ import (
 func main() {
     mux := http.NewServeMux()
 
-    fileServer := http.FileServer(http.Dir(".ui/static/"))
+    fileServer := http.FileServer(http.Dir("./ui/static/"))
 
     // register file server as handler for all URL paths which start with
     // "static". Strip /static from matching paths
