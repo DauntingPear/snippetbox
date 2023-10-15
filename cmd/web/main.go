@@ -6,15 +6,20 @@ import (
     "flag"
     "net/http"
     "os"
+
+    "snippetbox.quackden.net/internal/models"
+
     _ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
     logger *slog.Logger
+    snippets *models.SnippetModel
 }
 
 
 func main() {
+
 
     addr := flag.String("addr", ":4000", "HTTP network address")
 
@@ -33,6 +38,7 @@ func main() {
 
     app := &application{
         logger: logger,
+        snippets: &models.SnippetModel{DB: db},
     }
 
     // register file server as handler for all URL paths which start with
