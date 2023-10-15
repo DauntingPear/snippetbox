@@ -35,7 +35,7 @@ func (m *SnippetModel) Insert(title string, content string, expires int) (int, e
 }
 
 func (m *SnippetModel) Get(id int) (Snippet, error) {
-    return nil, nil
+    return Snippet{}, nil
 }
 
 func (m *SnippetModel) Latest() ([]Snippet, error) {
