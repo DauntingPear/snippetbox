@@ -10,7 +10,6 @@ type Snippet struct {
     Title string
     Content string
     Created time.Time
-    Expired time.Time
     Expires time.Time
 }
 
