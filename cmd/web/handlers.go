@@ -2,9 +2,12 @@ package main
 
 import (
     "fmt"
+    "errors"
     "html/template"
     "net/http"
     "strconv"
+
+    "snippetbox.quackden.net/internal/models"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
