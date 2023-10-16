@@ -11,6 +11,7 @@ type Snippet struct {
     Content string
     Created time.Time
     Expired time.Time
+    Expires time.Time
 }
 
 type SnippetModel struct {
