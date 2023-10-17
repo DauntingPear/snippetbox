@@ -1,20 +1,22 @@
 package main
 
 import (
-    "database/sql"
-    "log/slog"
-    "flag"
-    "net/http"
-    "os"
+	"database/sql"
+	"flag"
+	"log/slog"
+	"net/http"
+	"os"
+	"html/template"
 
-    "snippetbox.quackden.net/internal/models"
+	"snippetbox.quackden.net/internal/models"
 
-    _ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
     logger *slog.Logger
     snippets *models.SnippetModel
+    templateCache map[string]*template.Template
 }
 
 
@@ -36,9 +38,16 @@ func main() {
 
     defer db.Close()
 
+    templateCache, err := newTemplateCache()
+    if err != nil {
+        logger.Error(err.Error())
+        os.Exit(1)
+    }
+
     app := &application{
         logger: logger,
         snippets: &models.SnippetModel{DB: db},
+        templateCache: templateCache,
     }
 
     // register file server as handler for all URL paths which start with
