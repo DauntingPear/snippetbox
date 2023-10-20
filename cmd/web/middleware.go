@@ -35,6 +35,9 @@ func (app *application) logRequest(next http.Handler) http.Handler {
     })
 }
 
+// this function will not prevent panics from stopping execution from
+// functions that error which were spawned by new goroutines which were not
+// called by this middleware function
 func (app *application) recoverPanic(next http.Handler) http.Handler {
     return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
