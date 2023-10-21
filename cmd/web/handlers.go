@@ -26,7 +26,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
-    id, err := strconv.Atoi(r.URL.Query().Get("id"))
+    params := httprouter.ParamsFromContext(r.Context())
     if err != nil || id < 1 {
         app.notFound(w)
         return
