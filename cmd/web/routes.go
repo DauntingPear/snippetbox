@@ -4,6 +4,7 @@ import (
     "net/http"
 
     "github.com/justinas/alice"
+    "github.com/julienschmidt/httprouter"
 )
 
 func (app *application) routes() http.Handler {
