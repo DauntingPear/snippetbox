@@ -1,12 +1,14 @@
 package main
 
 import (
-    "fmt"
-    "errors"
-    "net/http"
-    "strconv"
+	"errors"
+	"fmt"
+	"net/http"
+	"strconv"
 
-    "snippetbox.quackden.net/internal/models"
+	"snippetbox.quackden.net/internal/models"
+
+    "github.com/julienschmidt/httprouter"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
