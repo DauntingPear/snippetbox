@@ -8,7 +8,7 @@ import (
 )
 
 func (app *application) routes() http.Handler {
-    mux := http.NewServeMux()
+    router := httprouter.New()
 
     fileServer := http.FileServer(http.Dir("./ui/static/"))
     mux.Handle("/static/", http.StripPrefix("/static", fileServer))
